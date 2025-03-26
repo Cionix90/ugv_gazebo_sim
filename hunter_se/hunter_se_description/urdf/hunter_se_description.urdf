@@ -180,7 +180,7 @@
       <material
         name="">
         <color
-          rgba="1 1 1 1" />
+          rgba="0.223529411764706 0.223529411764706 0.223529411764706 1" />
       </material>
     </visual>
     <collision>
@@ -292,7 +292,7 @@
       <material
         name="">
         <color
-          rgba="0.37647 0.37647 0.37647 1" />
+          rgba="0.223529411764706 0.223529411764706 0.223529411764706 1" />
       </material>
     </visual>
     <collision>
@@ -346,7 +346,7 @@
       <material
         name="">
         <color
-          rgba="1 1 1 1" />
+          rgba="0.223529411764706 0.223529411764706 0.223529411764706 1" />
       </material>
     </visual>
     <collision>
@@ -400,7 +400,7 @@
       <material
         name="">
         <color
-          rgba="0.79216 0.81961 0.93333 1" />
+          rgba="0.223529411764706 0.223529411764706 0.223529411764706 1" />
       </material>
     </visual>
     <collision>
@@ -456,7 +456,7 @@
       <material
         name="">
         <color
-          rgba="1 1 1 1" />
+          rgba="0.223529411764706 0.223529411764706 0.223529411764706 1" />
       </material>
     </visual>
     <collision>
@@ -484,7 +484,7 @@
   
   
   
-    <gazebo reference="fr_left_link"> 
+    <!-- <gazebo reference="fr_left_link"> 
     <mu1>0.8</mu1>
     <mu2>0.8</mu2>
     <kp>500000.0</kp>
@@ -530,7 +530,7 @@
       <robotSimType>steer_bot_hardware_gazebo/SteerBotHardwareGazebo</robotSimType>
       <legacyModeNS>false</legacyModeNS>
     </plugin>
-  </gazebo>
+  </gazebo> -->
 
 
 

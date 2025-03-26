@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="hunter_se">
+    <xacro:macro name="hunter_se_hw_int" params=" 
+    tf_prefix
+    simulation=true
+        ">
+            <xacro:if value="${tf_prefix == ''}">
+                <xacro:property name="joint_prefix" value=""/>
+            </xacro:if>
+            <xacro:unless value="${tf_prefix == ''}">
+                <xacro:property name="joint_prefix" value="${tf_prefix}/"/>
+            </xacro:unless>
+            <xacro:if value="${simulation}">
+            <ros2_control name="IgnitionSystem" type="system">
+                <hardware>
+                    <plugin>ign_ros2_control/IgnitionSystem</plugin>
+                </hardware>
+
+                <joint name="${joint_prefix}fr_steer_left_joint">
+                    <command_interface name="position">
+                        <param name="min">-0.69</param>
+                        <param name="max">0.69</param>
+                    </command_interface>
+                    <state_interface name="position">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="velocity">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="effort" />
+                </joint>
+                
+                <joint name="${joint_prefix}fr_steer_right_joint">
+                    <command_interface name="position">
+                        <param name="min">-0.69</param>
+                        <param name="max">0.69</param>
+                    </command_interface>
+                    <state_interface name="position">
+                        <param name="initial_value"> 0.0</param>
+                    </state_interface>
+                    <state_interface name="velocity">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="effort" />
+                </joint>
+                <joint name="${joint_prefix}re_left_joint">
+                    <command_interface name="velocity" />
+                    <state_interface name="position">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="velocity">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="effort" />
+                </joint>
+                
+                <joint name="${joint_prefix}re_right_joint">
+                    <command_interface name="velocity" />
+                    <state_interface name="position">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="velocity">
+                        <param name="initial_value">0.0</param>
+                    </state_interface>
+                    <state_interface name="effort" />
+                </joint>
+            
+            </ros2_control>
+        
+        
+        <gazebo>
+            <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+                <ros>
+                    <namespace>${tf_prefix}</namespace>
+                </ros>
+                <parameters>$(find hunter_se_description)/config/${tf_prefix}_controllers.yaml</parameters>
+            </plugin>
+        </gazebo>
+        </xacro:if>
+        <xacro:unless value="${simulation}">
+        </xacro:unless>
+
+    </xacro:macro>
+</robot>

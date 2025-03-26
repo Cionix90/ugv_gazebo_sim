@@ -1,0 +1,18 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 500 # Hz
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+joint_state_broadcaster:
+  ros__parameters:
+    joints:
+      - fr_steer_left_joint
+      - fr_steer_right_joint
+      - re_right_joint
+      - re_right_joint
+    interface:
+      - position
+      - velocity
+      - effort 
+    use_sim_time: True
