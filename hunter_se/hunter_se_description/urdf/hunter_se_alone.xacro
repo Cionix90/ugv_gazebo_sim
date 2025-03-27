@@ -2,10 +2,13 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur_softclaw">
     <xacro:include filename="$(find hunter_se_description)/urdf/hunter_se_macro.xacro"/>
     <xacro:include filename="$(find hunter_se_description)/urdf/hunter_hw_interface.xacro"/>
+    <xacro:include filename="$(find hunter_se_description)/urdf/lidar_sensor.xacro"/>
+    <xacro:include filename="$(find hunter_se_description)/urdf/imu_sensor.xacro"/>
     <xacro:arg name="tf_prefix" default=""/>
     <xacro:arg name="simulation" default="true"/>
 
     <xacro:hunter_se tf_prefix="$(arg tf_prefix)" simulation="$(arg simulation)"/>
     <xacro:hunter_se_hw_int tf_prefix="$(arg tf_prefix)" simulation="$(arg simulation)"/>
-
+    <xacro:lidar_sensor tf_prefix="$(arg tf_prefix)"/>
+    <xacro:imu_sensor tf_prefix="$(arg tf_prefix)"/>
 </robot>

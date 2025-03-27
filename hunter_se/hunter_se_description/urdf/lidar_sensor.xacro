@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    
+    <xacro:property name="PI" value="3.141592" />
+
+    <xacro:property name="b2l_x" value="0.0" />
+    <xacro:property name="b2l_y" value="0.0" />
+    <xacro:property name="b2l_z" value="0.065" />
+    <xacro:property name="b2l_R" value="0.0" />
+    <xacro:property name="b2l_P" value="0.0" />
+    <xacro:property name="b2l_Y" value="0.0" />
+    <xacro:property name="lidar_mass" value="0.125" />
+    <xacro:property name="lidar_len_rad" value="0.0508" />
+    <xacro:property name="lidar_len_h" value="0.055" />
+    <xacro:include filename="$(find hunter_se_description)/urdf/base_inertia.xacro" />
+    
+    <xacro:macro name="lidar_sensor" params="tf_prefix">
+
+        <xacro:if value="${tf_prefix == ''}">
+            <xacro:property name="joint_prefix" value=""/>
+        </xacro:if>
+        <xacro:unless value="${tf_prefix == ''}">
+            <xacro:property name="joint_prefix" value="${tf_prefix}/"/>
+        </xacro:unless>
+        <joint name="base2lidar" type="fixed">
+            <parent link="${joint_prefix}base_link"/>
+            <child link="${joint_prefix}lidar_link"/>
+            <origin xyz="${b2l_x} ${b2l_y} ${b2l_z}" rpy="${b2l_R} ${b2l_P} ${b2l_Y}"/>
+        </joint>
+        <link name="${joint_prefix}lidar_link">
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder radius="${lidar_len_rad}" length="${lidar_len_h}"/>
+                </geometry>
+            </collision>
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder radius="${lidar_len_rad}" length="${lidar_len_h}"/>
+                </geometry>
+                 <material
+                    name="">
+                    <color
+                    rgba="0.0 0.0 1 1" />
+                </material>
+            </visual>
+            
+            <xacro:cylinder_inertia m="${lidar_mass}" r="${lidar_len_rad}" h="${lidar_len_h}" dir="z"/>
+            
+        </link>
+        <gazebo reference="${joint_prefix}lidar_link">
+            <sensor name="RGLsensor" type="custom">
+                <plugin filename="RGLServerPluginInstance" name="rgl::RGLServerPluginInstance">
+                    <range>
+                    <min>0</min>
+                    <max>100</max>
+                    </range>
+                    <update_rate>10</update_rate>
+                    <update_on_paused_sim>false</update_on_paused_sim>
+                    <topic>${joint_prefix}rgl_lidar</topic>
+                    <frame>${joint_prefix}lidar_link</frame>
+                    <pattern_preset>Puck</pattern_preset>
+                </plugin>
+            </sensor>
+        </gazebo>
+        
+    </xacro:macro>
+
+</robot>

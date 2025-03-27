@@ -164,11 +164,11 @@
                     xyz="0 0 -0.015"
                     rpy="0 0 0" />
                 <geometry>
-                    <cylinder length="0.001" radius="0.135" />
+                    <cylinder length="0.01" radius="0.135" />
                     <!-- <mesh
                     filename="package://hunter_se_description/meshes/fr_left_link_coll.STL" /> -->
                 </geometry>
-                <xacro:wheels_collision mu="1.0" slip="1.0"/>
+                <xacro:wheels_collision mu="100.0" slip="1.0"/>
             </collision>
         </link>
         <joint name="${joint_prefix}fr_left_joint" type="continuous">
@@ -256,11 +256,11 @@
                     xyz="0 0 -0.015"
                     rpy="0 0 0" />
                 <geometry>
-                    <cylinder length="0.001" radius="0.135" />
+                    <cylinder length="0.01" radius="0.135" />
                     <!-- <mesh
                     filename="package://hunter_se_description/meshes/fr_right_link_coll.STL" /> -->
                 </geometry>
-                 <xacro:wheels_collision mu="1.0" slip="1.0"/>
+                 <xacro:wheels_collision mu="100.0" slip="1.0"/>
             </collision>
         </link>
         <joint name="${joint_prefix}fr_right_joint" type="continuous">
@@ -309,11 +309,11 @@
                     xyz="0 0 -0.015"
                     rpy="0 0 0" />
                 <geometry>
-                    <cylinder length="0.001" radius="0.135" />
+                    <cylinder length="0.01" radius="0.135" />
                     <!-- <mesh
                     filename="package://hunter_se_description/meshes/re_left_link_coll.STL" /> -->
                 </geometry>
-                <xacro:wheels_collision mu="1.0" slip="1.0"/>
+                <xacro:wheels_collision mu="100.0" slip="1.0"/>
             </collision>
         </link>
         <joint
@@ -364,11 +364,11 @@
                     xyz="0 0 -0.015"
                     rpy="0 0 0" />
                 <geometry>
-                    <cylinder length="0.001" radius="0.135" />
+                    <cylinder length="0.01" radius="0.135" />
                     <!-- <mesh
                     filename="package://hunter_se_description/meshes/re_right_link_coll.STL" /> -->
                 </geometry>
-                 <xacro:wheels_collision mu="1.0" slip="1.0"/>
+                 <xacro:wheels_collision mu="100.0" slip="1.0"/>
             </collision>
         </link>
         <joint name="${joint_prefix}re_right_joint" type="continuous">

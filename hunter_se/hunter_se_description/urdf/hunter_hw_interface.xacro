@@ -6,9 +6,11 @@
         ">
             <xacro:if value="${tf_prefix == ''}">
                 <xacro:property name="joint_prefix" value=""/>
+                <xacro:property name="file_prefix" value="base"/>
             </xacro:if>
             <xacro:unless value="${tf_prefix == ''}">
                 <xacro:property name="joint_prefix" value="${tf_prefix}/"/>
+                <xacro:property name="file_prefix" value="${tf_prefix}"/>
             </xacro:unless>
             <xacro:if value="${simulation}">
             <ros2_control name="IgnitionSystem" type="system">
@@ -73,7 +75,7 @@
                 <ros>
                     <namespace>${tf_prefix}</namespace>
                 </ros>
-                <parameters>$(find hunter_se_description)/config/${tf_prefix}_controllers.yaml</parameters>
+                <parameters>$(find hunter_se_description)/config/${file_prefix}_controllers.yaml</parameters>
             </plugin>
         </gazebo>
         </xacro:if>
