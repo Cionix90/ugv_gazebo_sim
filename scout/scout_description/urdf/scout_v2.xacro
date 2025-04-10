@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="ur_softclaw">
+    <xacro:include filename="$(find scout_description)/urdf/scout_v2_macro.xacro"/>
+    <xacro:include filename="$(find scout_description)/urdf/scout_hw_interface.xacro"/>
+    <xacro:include filename="$(find scout_description)/urdf/lidar_sensor.xacro"/>
+    <xacro:include filename="$(find scout_description)/urdf/imu_sensor.xacro"/>
+    <xacro:arg name="tf_prefix" default=""/>
+    <xacro:arg name="simulation" default="true"/>
+
+    <xacro:scout_v2 tf_prefix="$(arg tf_prefix)" simulation="$(arg simulation)"/>
+    <xacro:scout_hw_int tf_prefix="$(arg tf_prefix)" simulation="$(arg simulation)"/>
+    <xacro:lidar_sensor tf_prefix="$(arg tf_prefix)"/>
+    <xacro:imu_sensor tf_prefix="$(arg tf_prefix)"/>
+</robot>
