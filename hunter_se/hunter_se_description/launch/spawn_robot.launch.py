@@ -76,7 +76,32 @@ def create_yaml(context: LaunchContext, robot_name,joystic_teleop):
             ],
             output="screen",
             )
-    return [teleop_node,bridge]
+        
+    
+    if(robot_name_str != ""):
+        joint_state_broadcaster = Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["joint_state_broadcaster", "--controller-manager", f"/{robot_name_str}/controller_manager"],
+            )  
+        ackerman_control = Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["ackerman_control", "--controller-manager", f"/{robot_name_str}/controller_manager"],
+            )  
+    else:
+        joint_state_broadcaster = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+        )  
+        ackerman_control = Node(
+            package="controller_manager",
+            executable="spawner",
+            arguments=["ackerman_control", "--controller-manager", "/controller_manager"],
+            )  
+
+    return [teleop_node,bridge,joint_state_broadcaster,ackerman_control]
 
 
 def generate_launch_description():
